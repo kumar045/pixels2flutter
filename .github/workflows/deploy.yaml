@@ -45,7 +45,7 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v1
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }} # Explicitly specify the GitHub token
+          github-token: ${{ secrets.TOKEN }} # Explicitly specify the GitHub token
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
