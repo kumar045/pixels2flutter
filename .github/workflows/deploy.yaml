@@ -31,7 +31,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.6' # Use 'latest' to automatically select the latest stable version
+          flutter-version: 'latest' # Use 'latest' to automatically select the latest stable version
 
       - name: Disable Flutter Analytics
         run: flutter config --no-analytics
@@ -44,8 +44,6 @@ jobs:
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v1
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }} # Explicitly specify the GitHub token
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
@@ -55,3 +53,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
+        
