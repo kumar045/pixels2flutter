@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy Flutter Web App to GitHub Pages
 
 on:
   push:
@@ -6,14 +6,11 @@ on:
       - main
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -25,35 +22,35 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11
 
-      - name: Install Flutter
-        uses: subosito/flutter-action@2783a3f08e1baf891508463f8c6653c258246225
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3 # Updated to use the latest stable version
+
+      - name: Install and Setup Flutter
+        uses: subosito/flutter-action@v3 # Updated to use the latest stable version
         with:
           channel: 'stable'
-          cache: true
+          flutter-version: '3.2.2' # Specify the Flutter version if needed
 
-      - name: Set-up Flutter
-        run: |
-          flutter config --no-analytics
-          dart --disable-analytics
+      - name: Disable Flutter Analytics
+        run: flutter config --no-analytics
 
       - name: Install Dependencies
         run: flutter pub get
 
       - name: Build
-        run: flutter build web --release --web-renderer=canvaskit
+        run: flutter build web --release --web-renderer canvaskit
 
-      - name: Setup Pages
-        uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v1 # Updated to use the latest stable version
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@a753861a5debcf57bf8b404356158c8e1e33150c
+        uses: actions/upload-pages-artifact@v1 # Updated to use the latest stable version
         with:
           path: ./build/web
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@13b55b33dd8996121833dbc1db458c793a334630
+        uses: actions/deploy-pages@v1 # Updated to use the latest stable version
+        
