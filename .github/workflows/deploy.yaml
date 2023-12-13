@@ -25,13 +25,13 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3 # Updated to use the latest stable version
+        uses: actions/checkout@v3
 
       - name: Install and Setup Flutter
-        uses: subosito/flutter-action@v3 # Updated to use the latest stable version
+        uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.2.2' # Specify the Flutter version if needed
+          flutter-version: '3.2.2' 
 
       - name: Disable Flutter Analytics
         run: flutter config --no-analytics
@@ -43,14 +43,14 @@ jobs:
         run: flutter build web --release --web-renderer canvaskit
 
       - name: Setup GitHub Pages
-        uses: actions/configure-pages@v1 # Updated to use the latest stable version
+        uses: actions/configure-pages@v1
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1 # Updated to use the latest stable version
+        uses: actions/upload-pages-artifact@v1
         with:
           path: ./build/web
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1 # Updated to use the latest stable version
+        uses: actions/deploy-pages@v1
         
