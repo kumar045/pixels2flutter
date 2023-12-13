@@ -31,7 +31,7 @@ jobs:
         uses: subosito/flutter-action@v2
         with:
           channel: 'stable'
-          flutter-version: '3.16' # Use 'latest' to automatically select the latest stable version
+          flutter-version: '3.16.2' # Use 'latest' to automatically select the latest stable version
 
       - name: Disable Flutter Analytics
         run: flutter config --no-analytics
